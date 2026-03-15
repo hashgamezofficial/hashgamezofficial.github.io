@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy — Hash Gamez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:       #0f0f0f;
+      --surface:  #181818;
+      --card:     #1e1e1e;
+      --border:   #2a2a2a;
+      --orange:   #ff6b00;
+      --orange2:  #ff9500;
+      --green:    #39ff14;
+      --white:    #f5f5f5;
+      --muted:    #888;
+      --font-h:   'Bangers', cursive;
+      --font-b:   'Nunito', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-b);
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 999; opacity: 0.4;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(15,15,15,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--orange);
+    }
+    .nav-logo {
+      font-family: var(--font-h); font-size: 2rem;
+      letter-spacing: 0.08em; color: var(--white); text-decoration: none; line-height: 1;
+    }
+    .nav-logo span { color: var(--orange); }
+    .nav-back {
+      font-size: 0.8rem; font-weight: 800; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .nav-back::before { content: '←'; font-size: 1rem; }
+    .nav-back:hover { color: var(--orange); }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 9rem 2.5rem 4rem;
+      background: var(--surface);
+      border-bottom: 2px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .header-stripes {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -55deg, transparent 0px, transparent 40px,
+        rgba(255,107,0,0.03) 40px, rgba(255,107,0,0.03) 80px
+      );
+      pointer-events: none;
+    }
+    .header-blob {
+      position: absolute; width: 500px; height: 400px;
+      background: radial-gradient(circle, rgba(255,107,0,0.1) 0%, transparent 65%);
+      top: -100px; right: -100px; pointer-events: none;
+    }
+    .header-inner { max-width: 860px; margin: 0 auto; position: relative; }
+    .header-tag {
+      display: inline-block;
+      background: var(--orange); color: var(--bg);
+      font-size: 0.7rem; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase;
+      padding: 0.3rem 1rem; margin-bottom: 1rem;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+    .page-title {
+      font-family: var(--font-h);
+      font-size: clamp(3rem, 8vw, 6rem);
+      letter-spacing: 0.05em; line-height: 0.95; margin-bottom: 1.5rem;
+    }
+    .page-title em { font-style: normal; -webkit-text-stroke: 2px var(--orange); color: transparent; }
+    .header-meta {
+      display: flex; gap: 1rem 2rem; flex-wrap: wrap; margin-top: 0.5rem;
+    }
+    .meta-chip {
+      background: var(--card); border: 2px solid var(--border);
+      padding: 0.4rem 0.9rem; border-radius: 3px;
+      font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    }
+    .meta-chip span { color: var(--white); }
+
+    /* CONTENT */
+    .policy-body {
+      max-width: 860px; margin: 0 auto;
+      padding: 4rem 2.5rem 6rem;
+    }
+
+    .effective-banner {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--card);
+      border: 2px solid var(--orange);
+      border-left: 5px solid var(--orange);
+      padding: 1rem 1.5rem;
+      margin-bottom: 3rem;
+      border-radius: 0 3px 3px 0;
+      font-size: 0.82rem; font-weight: 800;
+      letter-spacing: 0.08em; color: var(--muted);
+    }
+    .effective-banner span { color: var(--orange); }
+
+    .policy-section {
+      margin-bottom: 2rem;
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-top: 4px solid var(--orange);
+      border-radius: 0 0 4px 4px;
+      overflow: hidden;
+      opacity: 0; transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .policy-section.visible { opacity: 1; transform: translateY(0); }
+
+    .ps-heading {
+      background: var(--surface);
+      padding: 1rem 1.5rem;
+      font-family: var(--font-h);
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      display: flex; align-items: center; gap: 0.75rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .ps-heading .ps-icon {
+      background: var(--orange); color: var(--bg);
+      width: 28px; height: 28px; border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; flex-shrink: 0;
+    }
+
+    .ps-body { padding: 1.5rem; }
+    .ps-body p {
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--muted); line-height: 1.8; margin-bottom: 1rem;
+    }
+    .ps-body p:last-child { margin-bottom: 0; }
+    .ps-body strong { color: var(--white); }
+    .ps-body em { color: var(--orange); font-style: normal; }
+
+    .ps-body ul { list-style: none; margin: 0.75rem 0 1rem; padding: 0; }
+    .ps-body ul li {
+      font-size: 0.93rem; font-weight: 600; color: var(--muted);
+      line-height: 1.7; padding: 0.5rem 0 0.5rem 1.5rem;
+      position: relative; border-bottom: 1px solid var(--border);
+    }
+    .ps-body ul li:last-child { border-bottom: none; }
+    .ps-body ul li::before { content: '▸'; position: absolute; left: 0; color: var(--orange); }
+
+    /* Third-party links */
+    .tp-grid {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;
+    }
+    .tp-btn {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--orange); text-decoration: none;
+      border: 2px solid var(--border); padding: 0.4rem 0.9rem;
+      border-radius: 3px; background: var(--surface);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .tp-btn:hover { border-color: var(--orange); background: rgba(255,107,0,0.08); }
+
+    /* Contact box */
+    .contact-box {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+      margin-top: 1rem; padding: 1rem 1.25rem;
+      background: var(--surface); border: 2px solid var(--orange);
+      border-radius: 3px;
+    }
+    .contact-box-icon { font-size: 1.4rem; }
+    .contact-box a {
+      font-size: 0.9rem; font-weight: 800;
+      color: var(--orange); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-box a:hover { color: var(--white); }
+
+    /* FOOTER */
+    footer {
+      background: #0a0a0a; border-top: 2px solid var(--orange);
+      padding: 2rem 2.5rem;
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--font-h); font-size: 1.6rem;
+      letter-spacing: 0.08em; color: var(--white);
+    }
+    .footer-logo span { color: var(--orange); }
+    .footer-copy { font-size: 0.75rem; font-weight: 600; color: var(--muted); }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .page-header { padding: 7rem 1.5rem 3rem; }
+      .policy-body { padding: 3rem 1.5rem 4rem; }
+      .header-meta { gap: 0.5rem; }
+      .meta-chip { font-size: 0.68rem; padding: 0.3rem 0.7rem; }
+      .ps-body p, .ps-body ul li { font-size: 0.88rem; }
+      .tp-btn { font-size: 0.66rem; }
+      footer { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 400px) {
+      .page-title { font-size: 2.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">HASH <span>#</span>GAMEZ</a>
+    <a href="index.html" class="nav-back">Back to Home</a>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <div class="header-stripes"></div>
+    <div class="header-blob"></div>
+    <div class="header-inner">
+      <div class="header-tag">Legal</div>
+      <h1 class="page-title">Privacy <em>Policy</em></h1>
+      <div class="header-meta">
+        <div class="meta-chip">Applies to: <span>All Hash Gamez Apps</span></div>
+        <div class="meta-chip">Effective: <span>2 April 2025</span></div>
+        <div class="meta-chip">Provider: <span>Hash Gamez</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="policy-body">
+
+    <div class="effective-banner">
+      ⚠ &nbsp; Effective as of <span>2025-04-02</span>. Continued use of any Hash Gamez application constitutes acceptance of this policy.
+    </div>
+
+    <div class="policy-section">
+      <div class="ps-heading"><span class="ps-icon">📋</span> Overview</div>
+      <div class="ps-body">
+        <p>This privacy policy applies to all mobile applications (hereby referred to as "Applications") developed and published by <strong>Hash Gamez</strong> (hereby referred to as "Service Provider"). This includes all current and future titles released by Hash Gamez on any mobile platform.</p>
+        <p>All Applications are provided as free services and are intended for use <strong>"AS IS"</strong>. By downloading or using any Application developed by Hash Gamez, you agree to the terms outlined in this privacy policy.</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="ps-heading"><span class="ps-icon">📡</span> Information Collection and Use</div>
+      <div class="ps-body">
+        <p>The Application collects information when you download and use it. This information may include:</p>
+        <ul>
+          <li>Your device's Internet Protocol address (e.g. IP address)</li>
+          <li>The pages of the Application that you visit, the time and date of your visit, and time spent on those pages</li>
+          <li>Total time spent on the Application</li>
+          <li>The operating system you use on your mobile device</li>
+        </ul>
+        <p>The Application does not gather <strong>precise information</strong> about the location of your mobile device. However, it does collect approximate geographical location data, used in the following ways:</p>
+        <ul>
+          <li><strong>Geolocation Services:</strong> To provide personalised content, relevant recommendations, and location-based features.</li>
+          <li><strong>Analytics and Improvements:</strong> Aggregated and anonymised location data helps analyse user behaviour, identify trends, and improve overall performance.</li>
+          <li><strong>Third-Party Services:</strong> Anonymised location data may periodically be shared with external services to enhance and optimise the Applications.</li>
+        </ul>
+        <p>The Service Provider may use your information to contact you with important notices, updates, and marketing promotions.</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="ps-heading"><span class="ps-icon">🔗</span> Third Party Access</div>
+      <div class="ps-body">
+        <p>Only aggregated, anonymised data is periodically shared with external services. The Applications use the following third-party services, each governed by their own privacy policies:</p>
+        <div class="tp-grid">
+          <a href="https://policies.google.com/privacy" target="_blank" class="tp-btn">Google Play Services</a>
+          <a href="https://support.google.com/admob/answer/6128543" target="_blank" class="tp-btn">AdMob</a>
+          <a href="https://firebase.google.com/support/privacy" target="_blank" class="tp-btn">Google Analytics for Firebase</a>
+          <a href="https://firebase.google.com/support/privacy" target="_blank" class="tp-btn">Firebase Crashlytics</a>
+          <a href="https://www.facebook.com/about/privacy" target="_blank" class="tp-btn">Facebook Audience Network</a>
+          <a href="https://unity.com/legal/privacy-policy" target="_blank" class="tp-btn">Unity Ads</a>
+          <a href="https://www.applovin.com/privacy/" target="_blank" class="tp-btn">AppLovin</a>
+          <a href="https://bytebrew.io/privacy-policy" target="_blank" class="tp-btn">ByteBrew</a>
+          <a href="https://www.mintegral.com/en/privacy" target="_blank" class="tp-btn">Mintegral</a>
+          <a href="https://yandex.com/legal/confidential/" target="_blank" class="tp-btn">Yandex</a>
+        </div>
+        <p style="margin-top:1.25rem;">The Service Provider may integrate additional advertising networks or analytics services in future updates. This policy will be updated accordingly, and each provider's own privacy policy will govern their data handling.</p>
+        <p>The Service Provider may disclose collected information:</p>
+        <ul>
+          <li>As required by law, such as to comply with a subpoena or similar legal process</li>
+          <li>When disclosure is necessary to protect rights, safety, investigate fraud, or respond to a government request</li>
+          <li>With trusted service providers acting on behalf of the Service Provider, who are bound to adhere to this privacy statement</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="ps-heading"><span class="ps-icon">🚪</span> Opt-Out Rights</div>
+      <div class="ps-body">
+        <p>You can stop all collection of information by uninstalling the Application at any time. Use the standard uninstall process available on your mobile device or via the application marketplace.</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="ps-heading"><span class="ps-icon">🗄️</span> Data Retention Policy</div>
+      <div class="ps-body">
+        <p>User Provided data will be retained for as long as you use the Application and for a reasonable period thereafter. To request deletion of your data, please contact us:</p>
+        <div class="contact-box">
+          <span class="contact-box-icon">✉️</span>
+          <a href="mailto:hashgamez.official@gmail.com">hashgamez.official@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="ps-heading"><span class="ps-icon">🧒</span> Children</div>
+      <div class="ps-body">
+        <p>Hash Gamez does not knowingly solicit data from or market to children under the age of <strong>13</strong>. The Applications do not address anyone under 13. If it is discovered that a child under 13 has provided personal information, it will be immediately deleted from servers.</p>
+        <p>If you are a parent or guardian and believe your child has provided personal information, please contact us immediately so the necessary actions can be taken.</p>
+        <div class="contact-box">
+          <span class="contact-box-icon">🛡️</span>
+          <a href="mailto:hashgamez.official@gmail.com">hashgamez.official@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="ps-heading"><span class="ps-icon">🔒</span> Security</div>
+      <div class="ps-body">
+        <p>Hash Gamez is committed to safeguarding the confidentiality of your information. Physical, electronic, and procedural safeguards are maintained to protect all information that is processed and retained.</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="ps-heading"><span class="ps-icon">🔄</span> Changes to This Policy</div>
+      <div class="ps-body">
+        <p>This Privacy Policy may be updated at any time. Any changes will be reflected on this page with an updated effective date. You are advised to review this policy periodically. Continued use of any Application is considered acceptance of the updated policy.</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="ps-heading"><span class="ps-icon">✅</span> Your Consent</div>
+      <div class="ps-body">
+        <p>By using any Application developed by Hash Gamez, you consent to the processing of your information as described in this Privacy Policy, including any future amendments.</p>
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <div class="ps-heading"><span class="ps-icon">📩</span> Contact Us</div>
+      <div class="ps-body">
+        <p>If you have any questions or concerns regarding this Privacy Policy or our data practices, please reach out directly:</p>
+        <div class="contact-box">
+          <span class="contact-box-icon">📡</span>
+          <a href="mailto:hashgamez.official@gmail.com">hashgamez.official@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">HASH <span>#</span>GAMEZ</div>
+    <div class="footer-copy">© 2025 Hash Gamez. All rights reserved. · Effective: 2025-04-02</div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.policy-section').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
