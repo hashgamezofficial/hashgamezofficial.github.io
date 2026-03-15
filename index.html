@@ -1,224 +1,807 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hash Gamez - Modern Mobile Gaming</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        /* RESET & BASE STYLES */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #121212; /* Dark gaming background */
-            color: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        
-        /* UTILITIES */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 0;
-        }
-        h2.section-title {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            text-align: center;
-            position: relative;
-        }
-        h2.section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: #00C897; /* Modern Teal Accent */
-            margin: 15px auto 0;
-        }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hash Gamez — Mobile Action Games Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:       #0f0f0f;
+      --surface:  #181818;
+      --card:     #1e1e1e;
+      --border:   #2a2a2a;
+      --orange:   #ff6b00;
+      --orange2:  #ff9500;
+      --green:    #39ff14;
+      --white:    #f5f5f5;
+      --muted:    #888;
+      --font-h:   'Bangers', cursive;
+      --font-b:   'Nunito', sans-serif;
+    }
 
-        /* HERO SECTION */
-        .hero {
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-            border-bottom: 2px solid #00C897;
-        }
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            letter-spacing: -2px;
-            background: linear-gradient(to right, #ffffff, #00C897);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            font-size: 1.5rem;
-            color: #aaaaaa;
-            max-width: 600px;
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-b);
+      overflow-x: hidden;
+    }
 
-        /* GAMES GRID */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            justify-content: center;
-        }
-        
-        /* Game Card Styling */
-        .game-card {
-            background: #1E1E1E;
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #333;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 200, 151, 0.15);
-            border-color: #00C897;
-        }
-        
-        .game-icon {
-            width: 140px;
-            height: 140px;
-            border-radius: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            object-fit: cover;
-        }
-        
-        .game-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-            color: #fff;
-        }
-        
-        .game-category {
-            font-size: 0.9rem;
-            color: #00C897;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            margin-bottom: 25px;
-        }
+    /* ── NOISE TEXTURE ── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
 
-        .play-button {
-            margin-top: auto; /* Pushes button to bottom */
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: transparent;
-            color: #00C897;
-            border: 2px solid #00C897;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-        .game-card:hover .play-button {
-            background-color: #00C897;
-            color: #121212;
-        }
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(15,15,15,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--orange);
+    }
+    .nav-logo {
+      font-family: var(--font-h);
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+      line-height: 1;
+    }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
 
-        /* CONTACT SECTION */
-        .contact-section {
-            background: #0a0a0a;
-            text-align: center;
-            padding: 80px 0;
-            border-top: 1px solid #333;
-        }
-        .email-link {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #00C897;
-        }
-        .email-link:hover { color: #fff; }
+    /* hamburger */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block; width: 26px; height: 2px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #000;
-            color: #555;
-            font-size: 0.9rem;
-        }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0;
+      background: rgba(15,15,15,0.98);
+      z-index: 490;
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-h);
+      font-size: 2.5rem;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--orange); }
 
-        /* MOBILE FIXES */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .games-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* diagonal stripe bg */
+    .hero-stripes {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent 0px,
+        transparent 40px,
+        rgba(255,107,0,0.03) 40px,
+        rgba(255,107,0,0.03) 80px
+      );
+      pointer-events: none;
+    }
+
+    .hero-blob1 {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,107,0,0.15) 0%, transparent 65%);
+      top: -100px; right: -150px;
+      animation: blobFloat 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .hero-blob2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(57,255,20,0.08) 0%, transparent 65%);
+      bottom: -50px; left: -100px;
+      animation: blobFloat 10s 2s ease-in-out infinite reverse;
+      pointer-events: none;
+    }
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(30px, -40px) scale(1.05); }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--orange);
+      color: var(--bg);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      margin-bottom: 1.5rem;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-title {
+      font-family: var(--font-h);
+      font-size: clamp(5rem, 16vw, 12rem);
+      letter-spacing: 0.04em;
+      line-height: 0.9;
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero-title .t1 { display: block; color: var(--white); }
+    .hero-title .t2 {
+      display: block;
+      -webkit-text-stroke: 3px var(--orange);
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin: 1.5rem auto 2.5rem;
+      max-width: 480px;
+      line-height: 1.6;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-cta {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .btn-main {
+      font-family: var(--font-b);
+      font-size: 0.85rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--orange);
+      border: none;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 4px 4px 0 rgba(255,107,0,0.3);
+    }
+    .btn-main:hover { background: var(--orange2); transform: translate(-2px,-2px); box-shadow: 6px 6px 0 rgba(255,107,0,0.3); }
+    .btn-ghost {
+      font-family: var(--font-b);
+      font-size: 0.85rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: transparent;
+      border: 2px solid var(--border);
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: var(--orange);
+      padding: 0.6rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 2px solid var(--orange2);
+      border-bottom: 2px solid var(--orange2);
+    }
+    .ticker-track {
+      display: inline-flex; gap: 0;
+      animation: ticker 25s linear infinite;
+    }
+    .ticker-item {
+      font-family: var(--font-h);
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      color: var(--bg);
+      padding: 0 2rem;
+    }
+    .ticker-item::before { content: '★  '; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── GAMES ── */
+    #games { padding: 6rem 2.5rem; background: var(--bg); }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: var(--font-h);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin-bottom: 3rem;
+    }
+    .section-title em { font-style: normal; color: var(--orange); }
+
+    .games-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .game-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+      position: relative;
+    }
+    .game-card:hover { border-color: var(--orange); transform: translateY(-5px); }
+    .game-card:hover .game-overlay { opacity: 1; }
+
+    .game-thumb {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .game-thumb-bg { position: absolute; inset: 0; }
+    .gc1 .game-thumb-bg { background: linear-gradient(135deg, #1a0a00, #3d1500); }
+    .gc2 .game-thumb-bg { background: linear-gradient(135deg, #001a0a, #003d15); }
+    .gc3 .game-thumb-bg { background: linear-gradient(135deg, #0a001a, #1a003d); }
+    .gc4 .game-thumb-bg { background: linear-gradient(135deg, #1a1000, #3d2800); }
+    .gc5 .game-thumb-bg { background: linear-gradient(135deg, #00101a, #00253d); }
+    .gc6 .game-thumb-bg { background: linear-gradient(135deg, #1a0010, #3d0025); }
+    .game-emoji { position: relative; z-index: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6)); }
+
+    .game-overlay {
+      position: absolute; inset: 0;
+      background: rgba(255,107,0,0.12);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .game-rating {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid var(--orange);
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--orange);
+      padding: 0.2rem 0.5rem;
+    }
+
+    .game-body { padding: 1.25rem; }
+    .game-tag {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+    .game-name {
+      font-family: var(--font-h);
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+    .game-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .game-play {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .game-play:hover { gap: 0.7rem; }
+    .game-play::after { content: '→'; }
+
+    /* ── ABOUT ── */
+    #about {
+      padding: 6rem 2.5rem;
+      background: var(--surface);
+      border-top: 2px solid var(--border);
+      border-bottom: 2px solid var(--border);
+    }
+    .about-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .about-text p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+    .about-text p strong { color: var(--white); }
+    .about-text p em { color: var(--orange); font-style: normal; }
+
+    .genre-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.75rem; margin-top: 2rem;
+    }
+    .genre-pill {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .genre-pill:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* about visual */
+    .about-visual {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      height: 420px;
+    }
+    .av-box {
+      width: 260px; height: 260px;
+      background: var(--card);
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7rem;
+      position: relative;
+      z-index: 2;
+      animation: boxBob 4s ease-in-out infinite;
+    }
+    .av-box::before {
+      content: '';
+      position: absolute; inset: -12px;
+      border: 2px dashed rgba(255,107,0,0.3);
+      animation: spinSlow 20s linear infinite;
+    }
+    .av-box::after {
+      content: '';
+      position: absolute; inset: -24px;
+      border: 2px dashed rgba(57,255,20,0.15);
+      animation: spinSlow 30s linear infinite reverse;
+    }
+    @keyframes boxBob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes spinSlow { to { transform: rotate(360deg); } }
+
+    .av-stat {
+      position: absolute;
+      background: var(--orange);
+      color: var(--bg);
+      padding: 0.6rem 1rem;
+      font-family: var(--font-h);
+      letter-spacing: 0.05em;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+    .av-stat .num { font-size: 1.6rem; display: block; line-height: 1; }
+    .av-stat .lbl { font-size: 0.6rem; font-family: var(--font-b); font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; }
+    .av-s1 { top: 30px; left: 10px; }
+    .av-s2 { bottom: 60px; right: 0; background: var(--surface); border: 2px solid var(--orange); color: var(--orange); }
+    .av-s3 { top: 100px; right: 20px; background: var(--green); color: var(--bg); }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 6rem 2.5rem;
+      background: var(--bg);
+      text-align: center;
+    }
+    .contact-inner { max-width: 560px; margin: 0 auto; }
+    .contact-desc {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 1rem 0 2.5rem;
+    }
+    .email-block {
+      display: inline-flex; align-items: center; gap: 1rem;
+      background: var(--card);
+      border: 2px solid var(--border);
+      padding: 1.1rem 2rem;
+      border-radius: 4px;
+      transition: border-color 0.2s;
+    }
+    .email-block:hover { border-color: var(--orange); }
+    .email-block-icon { font-size: 1.4rem; }
+    .email-block a {
+      font-family: var(--font-b);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--orange);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .email-block a:hover { color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a0a0a;
+      border-top: 2px solid var(--orange);
+      padding: 2rem 2.5rem;
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--font-h);
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--orange); }
+    .footer-links {
+      display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;
+    }
+    .footer-links a {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--orange); }
+    .footer-copy { font-size: 0.75rem; font-weight: 600; color: var(--muted); }
+
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay1 { transition-delay: 0.1s; }
+    .reveal-delay2 { transition-delay: 0.2s; }
+    .reveal-delay3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .about-visual { height: 300px; }
+      .av-box { width: 200px; height: 200px; font-size: 5rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      #games, #about, #contact { padding: 4rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      .hero-title .t2 { -webkit-text-stroke: 2px var(--orange); }
+      .hero-cta { flex-direction: column; align-items: center; }
+      .btn-main, .btn-ghost { width: 100%; max-width: 280px; text-align: center; }
+      .genre-grid { grid-template-columns: 1fr 1fr; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+    @media (max-width: 400px) {
+      .hero-title { font-size: 4rem; }
+      .nav-logo { font-size: 1.6rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <header class="hero">
-        <h1>Hash Gamez</h1>
-        <p>Immersive 3D Action & Simulation Games</p>
-    </header>
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">HASH <span>#</span>GAMEZ</a>
+    <ul class="nav-links">
+      <li><a href="#games">Games</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="privacy-policy.html">Privacy</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-    <section class="container" id="work">
-        <h2 class="section-title">Our Games</h2>
-        <div class="games-grid">
-            
-            <a href="https://play.google.com/store/apps/details?id=com.hash.santa.spider.rope.hero.vice.city.superhero.games" target="_blank">
-                <div class="game-card">
-                    <img src="https://play-lh.googleusercontent.com/295-esS31w-NB57C2A7oonqLY-vb27fk7CvPNHZ2xvoVohcAqO_lvjcL4bNICT_P7jDW" alt="Spider Rope Hero" class="game-icon">
-                    <h3>Spider Rope Hero Crime City</h3>
-                    <div class="game-category">Action / Superhero</div>
-                    <span class="play-button">Download Now</span>
-                </div>
-            </a>
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#games" class="mobile-link">Games</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="privacy-policy.html" class="mobile-link">Privacy</a>
+  </div>
 
-            <a href="https://play.google.com/store/apps/details?id=com.hash.openworld.gangster.theft.auto" target="_blank">
-                <div class="game-card">
-                    <img src="https://play-lh.googleusercontent.com/ahzncKMjHHHvjZFluIfqd09ZWl_VJc-VI_ObZZUhdiXsEDFtSN54HdgcA7m1tuQWyA" alt="Gangster Theft Auto" class="game-icon">
-                    <h3>Open World Gangster Theft Auto</h3>
-                    <div class="game-category">Open World / Simulation</div>
-                    <span class="play-button">Download Now</span>
-                </div>
-            </a>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-stripes"></div>
+    <div class="hero-blob1"></div>
+    <div class="hero-blob2"></div>
 
-             <a href="https://play.google.com/store/apps/details?id=com.hash.cat.game.parkour" target="_blank">
-                <div class="game-card">
-                    <img src="https://play-lh.googleusercontent.com/cx0R5Ndr_RiMVpxgHKPcx4wERINe1d1X2wYnZ1GIfgf5Z51N34BIQ66O451KqjZnCQ" alt="Cat Parkour" class="game-icon">
-                    <h3>Cat Parkour Game 3D</h3>
-                    <div class="game-category">Simulation / Arcade</div>
-                    <span class="play-button">Download Now</span>
-                </div>
-            </a>
+    <div class="hero-eyebrow">Mobile Gaming Studio</div>
+    <h1 class="hero-title">
+      <span class="t1">HASH</span>
+      <span class="t2">GAMEZ</span>
+    </h1>
+    <p class="hero-sub">Action. Adventure. Adrenaline. We build mobile games that punch hard and keep you coming back for more.</p>
+    <div class="hero-cta">
+      <a href="#games" class="btn-main">Play Our Games</a>
+      <a href="#about" class="btn-ghost">Our Story</a>
+    </div>
+  </section>
 
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item">Iron Robot</span>
+      <span class="ticker-item">Spider Boy</span>
+      <span class="ticker-item">Car Simulator</span>
+      <span class="ticker-item">Open World</span>
+      <span class="ticker-item">Robot Fighter</span>
+      <span class="ticker-item">Police Chase</span>
+      <span class="ticker-item">Ninja Hero</span>
+      <span class="ticker-item">Bat Robot</span>
+      <span class="ticker-item">Iron Robot</span>
+      <span class="ticker-item">Spider Boy</span>
+      <span class="ticker-item">Car Simulator</span>
+      <span class="ticker-item">Open World</span>
+      <span class="ticker-item">Robot Fighter</span>
+      <span class="ticker-item">Police Chase</span>
+      <span class="ticker-item">Ninja Hero</span>
+      <span class="ticker-item">Bat Robot</span>
+    </div>
+  </div>
+
+  <!-- GAMES -->
+  <section id="games">
+    <div style="max-width:1200px; margin:0 auto;">
+      <div class="reveal">
+        <div class="section-label">Our Games</div>
+        <h2 class="section-title">Hit the <em>Arena</em></h2>
+      </div>
+      <div class="games-grid">
+
+        <div class="game-card gc1 reveal reveal-delay1">
+          <div class="game-thumb">
+            <div class="game-thumb-bg"></div>
+            <span class="game-emoji">🤖</span>
+            <div class="game-overlay"></div>
+            <div class="game-rating">★ 3.9</div>
+          </div>
+          <div class="game-body">
+            <div class="game-tag">Action · Robot</div>
+            <div class="game-name">Iron Robot Game</div>
+            <p class="game-desc">Step into the iron suit and dominate the battlefield in this intense robot action game.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.hash.squid.game.red.light.green.light.survival.game" target="_blank" class="game-play">Play Now</a>
+          </div>
         </div>
-    </section>
 
-    <section class="container contact-section">
-        <h2 class="section-title">Get In Touch</h2>
-        <p style="margin-bottom: 20px; color: #aaa;">Support & Business Inquiries</p>
-        <a href="mailto:hashgamez.official@gmail.com" class="email-link">hashgamez.official@gmail.com</a>
-    </section>
+        <div class="game-card gc2 reveal reveal-delay2">
+          <div class="game-thumb">
+            <div class="game-thumb-bg"></div>
+            <span class="game-emoji">🕷️</span>
+            <div class="game-overlay"></div>
+            <div class="game-rating">★ 3.4</div>
+          </div>
+          <div class="game-body">
+            <div class="game-tag">Action · Hero</div>
+            <div class="game-name">Spider Boy</div>
+            <p class="game-desc">Swing through the city, take down enemies, and become the ultimate rope hero.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.hash.rope.hero.city.fighting.games" target="_blank" class="game-play">Play Now</a>
+          </div>
+        </div>
 
-    <footer>
-        <p>&copy; 2024 Hash Gamez. All rights reserved.</p>
-    </footer>
+        <div class="game-card gc3 reveal reveal-delay3">
+          <div class="game-thumb">
+            <div class="game-thumb-bg"></div>
+            <span class="game-emoji">⚔️</span>
+            <div class="game-overlay"></div>
+            <div class="game-rating">★ 3.4</div>
+          </div>
+          <div class="game-body">
+            <div class="game-tag">Action · Ninja</div>
+            <div class="game-name">IRON NINJA</div>
+            <p class="game-desc">Slash, dodge, and destroy in a high-octane ninja robot adventure across epic stages.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.hash.iron.boy.hero.fighting.games" target="_blank" class="game-play">Play Now</a>
+          </div>
+        </div>
 
+        <div class="game-card gc4 reveal reveal-delay1">
+          <div class="game-thumb">
+            <div class="game-thumb-bg"></div>
+            <span class="game-emoji">🚗</span>
+            <div class="game-overlay"></div>
+            <div class="game-rating">★ 3.7</div>
+          </div>
+          <div class="game-body">
+            <div class="game-tag">Simulation · Racing</div>
+            <div class="game-name">Ultimate Car Driving</div>
+            <p class="game-desc">Get behind the wheel of powerful cars and push them to the limit in a 3D open world.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.hash.car.simulator.game" target="_blank" class="game-play">Play Now</a>
+          </div>
+        </div>
+
+        <div class="game-card gc5 reveal reveal-delay2">
+          <div class="game-thumb">
+            <div class="game-thumb-bg"></div>
+            <span class="game-emoji">🚔</span>
+            <div class="game-overlay"></div>
+            <div class="game-rating">★ 3.5</div>
+          </div>
+          <div class="game-body">
+            <div class="game-tag">Simulation · Police</div>
+            <div class="game-name">Patrol Duty</div>
+            <p class="game-desc">Serve and protect in this action-packed police car simulator with open-world missions.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.hash.police.car.simulator.game" target="_blank" class="game-play">Play Now</a>
+          </div>
+        </div>
+
+        <div class="game-card gc6 reveal reveal-delay3">
+          <div class="game-thumb">
+            <div class="game-thumb-bg"></div>
+            <span class="game-emoji">🌆</span>
+            <div class="game-overlay"></div>
+            <div class="game-rating">★ 3.6</div>
+          </div>
+          <div class="game-body">
+            <div class="game-tag">Open World · Crime</div>
+            <div class="game-name">Gangster Crime</div>
+            <p class="game-desc">Rule the streets in a sprawling open world crime sandbox. Your city, your rules.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.hash.openworld.gangster.theft.auto" target="_blank" class="game-play">Play Now</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="reveal" style="text-align:center; margin-top:3rem;">
+        <a href="https://play.google.com/store/apps/developer?id=Hash+Gamez" target="_blank" class="btn-main">See All Games on Google Play</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-visual reveal">
+        <div class="av-stat av-s1">
+          <span class="num">13+</span>
+          <span class="lbl">Games</span>
+        </div>
+        <div class="av-stat av-s3">
+          <span class="num">iOS+Android</span>
+          <span class="lbl">Platforms</span>
+        </div>
+        <div class="av-box">🎮</div>
+        <div class="av-stat av-s2">
+          <span class="num">∞</span>
+          <span class="lbl">Fun</span>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <div class="section-label">About Us</div>
+        <h2 class="section-title">Made for <em>Players</em></h2>
+        <p>We're <strong>Hash Gamez</strong> — a mobile game studio obsessed with one thing: building games that are <em>instantly fun</em> and impossible to put down.</p>
+        <p>From robot brawlers to open-world sandboxes, every game we ship is designed with <strong>fast action, tight controls, and hours of replayability</strong> in mind.</p>
+        <p>We believe great mobile games should be <em>free, accessible, and thrilling</em> for everyone — whether you've got 5 minutes or 5 hours.</p>
+        <div class="genre-grid">
+          <div class="genre-pill">Action</div>
+          <div class="genre-pill">Open World</div>
+          <div class="genre-pill">Simulation</div>
+          <div class="genre-pill">Adventure</div>
+          <div class="genre-pill">Fighting</div>
+          <div class="genre-pill">Casual</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner reveal">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">Get in <em>Touch</em></h2>
+      <p class="contact-desc">Got a question, partnership idea, or just want to say hey? We're all ears. Drop us a message and we'll get back to you.</p>
+      <div class="email-block">
+        <span class="email-block-icon">📩</span>
+        <a href="mailto:hashgamez.official@gmail.com">hashgamez.official@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">HASH <span>#</span>GAMEZ</div>
+    <div class="footer-links">
+      <a href="mailto:hashgamez.official@gmail.com">hashgamez.official@gmail.com</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="https://play.google.com/store/apps/developer?id=Hash+Gamez" target="_blank">Google Play</a>
+    </div>
+    <div class="footer-copy">© 2025 Hash Gamez. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
